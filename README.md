@@ -17,9 +17,9 @@ This is a super early-stage project. It's based on the
 [starter kit](https://github.com/ynab/ynab-api-starter-kit)
 provided by YNAB.
 
-My experience is very much not in webdev. My coding experience is in C++/C#/Python/Prolog/etc.
-My last Javascript project was cobbled together in the early days of AJAX (remember that?)
-So don't expect quick progress; this is a let's-learn-Javascript project first and foremost.
+My webdev experience is pretty limited. My coding experience is mostly in C++/C#/Python/Prolog/etc.
+I did a bit of JS/ASP.net (remember that?) from the early days of AJAX (remember _that_???)
+So don't expect quick progress; this is a let's-learn-modern-Javascript project first and foremost.
 
 ## Goals
 
