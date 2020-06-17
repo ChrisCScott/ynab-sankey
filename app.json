@@ -1,6 +1,6 @@
 {
-    "name": "YNAB API Starter Kit",
-    "description": "To quickly get started building an App with the YNAB API",
-    "repository": "https://github.com/ynab/ynab-api-starter-kit",
-    "keywords": ["ynab"]
+    "name": "Sankey for YNAB",
+    "description": "Generates Sankey diagrams from YNAB data",
+    "repository": "https://github.com/ChrisCScott/ynab-sankey",
+    "keywords": ["ynab", "sankey"]
 }

@@ -1,20 +1,22 @@
 {
-  "name": "ynab-api-starter-kit",
-  "version": "1.0.2",
-  "description": "To quickly get started building an App with the YNAB API.",
+  "name": "ynab-sankey",
+  "version": "0.0.1",
+  "description": "Generates Sankey diagrams from YNAB data",
+  "repository": "https://github.com/ChrisCScott/ynab-sankey",
   "bin": "bin/start.js",
   "scripts": {
     "start": "webpack-dev-server --open --hot",
     "build": "NODE_ENV='production' webpack --progress --hide-modules"
   },
-  "author": "You Need a Budget, LLC",
-  "license": "Apache-2.0",
+  "author": "Christopher Scott",
+  "license": "All Rights Reserved",
   "dependencies": {
     "chalk": "^4.0.0",
     "cpr": "^3.0.1"
   },
   "devDependencies": {
     "css-loader": "^3.5.3",
+    "google-charts": "^2.0.0",
     "npm-check-updates": "^4.1.2",
     "vue": "2.6.11",
     "vue-loader": "^15.9.2",
