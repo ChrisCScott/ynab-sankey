@@ -38,9 +38,9 @@
         <!-- Otherwise if we have a token, show the budget select -->
         <Budgets v-else-if="!budgetId" :budgets="budgets" :selectBudget="selectBudget" />
 
-        <!-- If a budget has been selected, display transactions from that budget -->
+        <!-- If a budget has been selected, display a Sankey diagram from that budget -->
         <div v-else>
-          <Transactions :transactions="transactions" />
+          <Sankey :budget-months="budget-months" />
           <button class="btn btn-info" @click="budgetId = null">&lt; Select Another Budget</button>
         </div>
 
@@ -62,7 +62,7 @@ import config from './config.json';
 import Nav from './components/Nav.vue';
 import Footer from './components/Footer.vue';
 import Budgets from './components/Budgets.vue';
-import Transactions from './components/Transactions.vue';
+import Sankey from './components/Sankey.vue';
 
 export default {
   // The data to feed our templates
@@ -78,7 +78,7 @@ export default {
       error: null,
       budgetId: null,
       budgets: [],
-      transactions: [],
+      months: [],
     }
   },
   // When this component is created, check whether we need to get a token,
@@ -107,14 +107,27 @@ export default {
         this.loading = false;
       });
     },
-    // This selects a budget and gets all the transactions in that budget
+    // This selects a budget and gets all the months in that budget
     selectBudget(id) {
       this.loading = true;
       this.error = null;
       this.budgetId = id;
-      this.transactions = [];
-      this.api.transactions.getTransactions(id).then((res) => {
-        this.transactions = res.data.transactions;
+      this.months = [];
+      // We can't get all the months of the budget in one call.
+      // First we need to collect the list of months:
+      this.api.months.getBudgetMonths(id).then((res) => {
+        // Then, for each month, we need to request the full details
+        // (This includes budgeted amounts, which is the key thing we want!)
+        res.data.months.forEach(month => {
+          this.api.month.getBudgetMonth(id, month).then((month_res) => {
+            this.months.push(month_res)
+          })
+        });
+      // TODO: Confirm months are sorted? (Can simply use the order
+      // provided by `res`, which has a listing of months.)
+
+      // Catch errors for the outer loop (list-of-months query) and
+      // for the inner loop (month details queries):
       }).catch((err) => {
         this.error = err.error.detail;
       }).finally(() => {
