@@ -120,7 +120,7 @@ export default {
         // (This includes budgeted amounts, which is the key thing we want!)
         res.data.months.forEach(month => {
           this.api.month.getBudgetMonth(id, month).then((month_res) => {
-            this.months.push(month_res)
+            this.months.push(month_res.data.month)
           })
         });
       // TODO: Confirm months are sorted? (Can simply use the order
